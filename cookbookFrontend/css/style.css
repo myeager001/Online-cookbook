@@ -1,0 +1,136 @@
+.actionIcon:hover{
+  cursor: pointer;
+}
+.brand{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+.error{
+  color: red
+}
+.fa{
+  margin-right: 10px;
+}
+.favorite{
+  color: yellow;
+}
+.favoriteOff{
+  color: black;
+}
+.formGroup{
+  margin: 3%;
+}
+.homeBody{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.iconRow{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 2vw;
+}
+.infoBar{
+  margin-top: 8%;
+  display: flex;
+  flex-direction: row;
+  background-color: #4e5d6c;
+}
+.infoItem{
+  width: 25%;
+  margin: 10px 3%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+.landingPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loginAction{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:500px;
+}
+.loginContainer{
+  width: 33%;
+}
+.navbar{
+  width: 100%;
+}
+.navbar-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.recipe{
+  height: 22%;
+  border-radius: 5px;
+  width: 20%;
+  margin: 1% 2.5%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4e5d6c;
+}
+.recipe:hover {
+  background-color: #df691a;
+}
+.recipeName{
+  font-size: 2.5vw;
+}
+.recipeView{
+  height: 70vw;
+  overflow-y: scroll;
+  width:79%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.red{
+  background-color: red;
+}
+.sideNav{
+  background-color: #4e5d6c;
+  height: 70vw;
+  margin:3%;
+  padding:3%;
+  width:15%;
+  display: flex;
+  flex-direction: column;
+}
+.splash{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 500px;
+}
+.tagLine{
+  margin: 10% 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tagRow{
+  font-size: 1.5vw;
+}
+.toggleLogin{
+  color: #4e5d6c;
+}
+.toggleLogin:hover{
+  cursor: pointer;
+}

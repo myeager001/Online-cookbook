@@ -1,0 +1,53 @@
+body{
+  width:375px;
+  height:200px;
+}
+h1{
+  margin-bottom: 3px;
+}
+.act{
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%
+}
+.actions:hover{
+  cursor: pointer;
+}
+.body {
+  text-align: center;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 100%;
+  margin-bottom: 10px;
+}
+.error{
+  color: red;
+}
+.input {
+  margin: 5px;
+  width: 80%;
+  font-size: 14px;
+  padding: 5px;
+
+}
+.results{
+    text-align: center;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 100%;
+    margin-bottom: 10px;
+
+}

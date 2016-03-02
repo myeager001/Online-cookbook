@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Online Cookbook Extenstion",
+  "description": "This extension adds recipies to your online cookbook",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "/assets/icon3.png",
+    "default_popup": "popup.html",
+    "default_title": "Add to Cookbook"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ]
+}

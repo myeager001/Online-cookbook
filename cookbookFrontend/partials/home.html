@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class='brand'>
+        <img alt="Brand" src="/icon.png">
+        <h3>The Online CookBook</h3>
+      </div>
+      <div class="btn-group menu" id="links">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#" class="nav-btn">Edit Profile</a></li>
+          <li><a href="#" class="nav-btn">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class='homeBody'>
+  <div class='sideNav'>
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href='#'>My Recipes</a></li>
+      <li role="presentation"><a href="#">My Favorites</a></li>
+    </ul>
+  </div>
+  <div class='recipeView'>
+    <div ng-repeat='recipe in user.recipies' class='recipe' ng-click='go(recipe.url)'>
+        <h1 class='recipeName'>{{recipe.name}}</h1>
+        <div class='tagRow'>
+          <span ng-repeat='tag in recipe.tags'>{{tag.text}} </span>
+        </div>
+        <h4 class='iconRow'><i class="fa fa-trash actionIcon" ng-click='toggleModal(); $event.stopPropagation();'></i><i class="fa fa-tag actionIcon"></i><i class="fa fa-star actionIcon" ng-click='toggleFav(recipe); $event.stopPropagation(); fav=!fav;' ng-class="fav ? 'favorite' : 'favortieOFF'"></i></h4>
+    </div>
+    <modal-dialog show='modalShown' width='300px' height='150px'>
+      <h3 class='ng-modal-type'>Remove from the Book?</h3>
+      <div>
+        <button type="button" class="btn btn-success">Remove</button>
+        <button type="button" class="btn btn-warning" ng-click='toggleModal()'>Cancel</button>
+      </div>
+    </modal-dialog>
+  </div>
+</main>

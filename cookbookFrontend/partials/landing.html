@@ -1,0 +1,96 @@
+<main class='landingPage'>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <img alt="Brand" src="/icon.png">
+        <h3>The Online CookBook</h3>
+      </div>
+    </div>
+  </nav>
+  <div ng-show='!login' class='splash'>
+    <h1 class='tagLine'>The best way to organize all of your online cooking resources</h1>
+    <button type="button" class="btn btn-default signIn" ng-click='login=!login'>
+      Login or Signup
+    </button>
+  </div>
+  <div ng-show='login' class='loginContainer'>
+    <form ng-submit='signupCall(signupPacket)' name='signUpForm' ng-show='signUp' class='loginAction'>
+      <span class='error'>{{signupMessage}}</span>
+      <h3>SignUp or<span ng-click='signUp=!signUp' class='toggleLogin'> Login</span></h3>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Email</span>
+          <input type="email" class="form-control" name='email' ng-required='true'
+          ng-model='signupPacket.email'>
+        </div>
+        <span class="error" ng-show="signUpForm.email.$error.required">Required!</span>
+        <span class="error" ng-show="signUpForm.email.$error.email">Not valid email!</span>
+      </div>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Username</span>
+          <input type="text" class="form-control" ng-required='true' name='username' ng-minlength=3 ng-maxlength=16
+          ng-model='signupPacket.username' ng-pattern='/^[a-zA-Z0-9]*$/'>
+        </div>
+        <span class="error" ng-show="signUpForm.username.$error.required">Required!</span>
+        <span class="error" ng-show="signUpForm.username.$error.minlength">Username is to short!</span>
+        <span class="error" ng-show="signUpForm.username.$error.maxlength">Username is to long!</span>
+          <span class="error" ng-show="signUpForm.username.$error.pattern">Only alphanumeric characters!</span>
+      </div>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Password</span>
+          <input type="password" class="form-control" ng-required='true' id='password' name='password' ng-model='password'
+          ng-minlength=8>
+        </div>
+        <span class="error" ng-show="signUpForm.password.$error.required">Required!</span>
+        <span class="error" ng-show="signUpForm.password.$error.minlength">Password is to short!</span>
+      </div>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Confirm Password</span>
+          <input type="password" class="form-control" ng-required='true' name='passwordConfirm' id='passwordConfrim'
+          ng-model='signupPacket.password' pw-check='password'>
+        </div>
+        <span class="error" ng-show="signUpForm.passwordConfirm.$error.required">Required!</span>
+        <span class="error" ng-show="signUpForm.passwordConfirm.$error.pwmatch">Passwords do not match!</span>
+      </div>
+      <input type='submit' class='btn' ng-disabled="signUpFrom.$invalid">
+    </form>
+    <form ng-submit='loginCall(loginPacket)' name='loginForm' ng-show='!signUp' class='loginAction'>
+      <span class='error'>{{loginMessage}}</span>
+      <h3>Login or<span ng-click='signUp=!signUp' class='toggleLogin'> SignUp</span></h3>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Username</span>
+          <input type="text" class="form-control" ng-required='true' 
+          ng-model='loginPacket.username'>
+        </div>
+      </div>
+      <div class='formGroup'>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Password</span>
+          <input type="password" class="form-control" ng-required='true'
+          ng-model='loginPacket.password'>
+        </div>
+      </div>
+      <input type='submit' class='btn' ng-disabled="signUpFrom.$invalid">
+    </form>
+  </div>
+  <div class='infoBar'>
+    <div class='infoItem'>
+      <h2><i class="fa fa-sitemap"></i>Stay orangized</h2>
+      <p>blah blah blah</p>
+    </div>
+    <div class='infoItem'>
+      <h2><i class="fa fa-chrome"></i>Easy to use chrome extension</h2>
+      <p>Download an easy to use chrome extension
+        that will quickly allow you to add the link to your cookbook</p>
+    </div>
+    <div class='infoItem'>
+      <h2><i class="fa fa-filter"></i>Sort and tag recipes</h2>
+      <p>add tags to each of your recipies to allow for color coded organization
+        filter by tags or serach your entire recipe base </p>
+    </div>
+  </div>
+</main>
