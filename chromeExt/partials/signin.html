@@ -1,6 +1,6 @@
 <form ng-submit='loginCall(loginPacket)' name='loginForm' ng-show='!signUp' class='loginAction'>
   <span class='error'>{{loginMessage}}</span>
-  <h3>Login or<span ng-click='signUp=!signUp' class='toggleLogin'> SignUp</span></h3>
+  <h3>Login</h3>
   <div class='formGroup'>
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">Username</span>
@@ -15,5 +15,5 @@
       ng-model='loginPacket.password'>
     </div>
   </div>
-  <input type='submit' class='btn' ng-disabled="signUpFrom.$invalid">
+  <input type='submit' class='btn btn-default' ng-disabled="signUpFrom.$invalid">
 </form>
