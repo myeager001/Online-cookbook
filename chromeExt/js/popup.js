@@ -1,11 +1,16 @@
-var app = angular.module('popup', ['ngTagsInput'])
-app.controller('MainController', ['$scope', '$http', '$window', function(scope, http, $window){
+var app = angular.module('popup', ['ngTagsInput', 'ngRoute'])
+app.controller('MainController', ['$scope', '$http', '$window', '$location',function(scope, http, $window, location){
+  console.log('in Main');
   scope.recipe={}
   scope.recipe.tags = [];
   scope.recipe.name;
   scope.success = false;
   scope.done = function(){
     window.close();
+  }
+  scope.logOut = function(){
+    chrome.storage.local.clear();
+    location.path('/');
   }
   scope.redirect = function(){
     $window.open('http://localhost:3333/#/home')
@@ -34,3 +39,57 @@ app.controller('MainController', ['$scope', '$http', '$window', function(scope, 
     }
   }
 }])
+app.controller('SigninController', ['$scope', '$http', '$location',function(scope, http, location){
+  console.log('in signin');
+  chrome.storage.local.get('token', function(token){
+    if(token.token){
+      location.path('/home')
+    }
+  });
+  scope.loginCall = function(packet) {
+    http.post('http://localhost:3000/auth/login', packet).then(function(results){
+      console.log(results);
+      if(results.data.success){
+        results.data.token
+        chrome.storage.local.set({'token': results.data.token});
+        location.path('/home')
+      }else{
+        scope.loginMessage = results.data.message
+      }
+    })
+  }
+}])
+app.config(function($routeProvider, $httpProvider){
+  $routeProvider.when('/home', {
+    templateUrl: 'partials/home.html',
+    controller: 'MainController'
+  })
+  .when('/', {
+    templateUrl: 'partials/signin.html',
+    controller: 'SigninController'
+  })
+  .otherwise({redirectTo :'/'})
+
+  $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
+     return {
+         'request': function (config) {
+             config.headers = config.headers || {};
+             if (chrome.storage.token) {
+                  chrome.storage.local.get('token', function(token){
+                    config.headers.token = token.token;
+                    return config;
+                  })
+             }else{
+               return config;
+             }
+         },
+         'responseError': function (response) {
+             if (response.status === 401 || response.status === 403) {
+                 $location.path('/signin');
+             }
+             return $q.reject(response);
+         }
+     };
+  }]);
+
+});

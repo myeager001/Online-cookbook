@@ -34,7 +34,10 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
     window.location.assign(url)
   }
   scope.toggleFav = function(recipe){
-    console.log(recipe);
+    this.recipe.favorite = !this.recipe.favorite
+    http.put('http://localhost:3000/home/', recipe).then(function(results){
+      console.log(results.data)
+    })
   }
   scope.modalShown = false;
   scope.toggleModal = function() {

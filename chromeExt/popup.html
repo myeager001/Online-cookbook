@@ -7,7 +7,8 @@
 <html ng-app='popup' ng-csp>
   <head>
     <title>Recipe Cookbook</title>
-    <script src="js/angular.min.js" charset="utf-8"></script>
+    <script src="js/angular.js" charset="utf-8"></script>
+    <script src="js/angular-route.js" charset="utf-8"></script>
     <script src="js/ng-tags-input.min.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/ng-tags-input.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
@@ -21,19 +22,9 @@
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
   </head>
-  <body ng-controller='MainController'>
-    <div ng-show='!success' class='body'>
-      <span class='error'>{{error}}</span>
-      <h1> Add to Cookbook </h1>
-      <input type='text' class='input' ng-model='recipe.name' placeholder="Recipe Name">
-      <tags-input ng-model="recipe.tags" add-on-space="true" class='input'></tags-input>
-      <button type="button" class="btn btn-default" ng-click='sendResults(recipe)'>
-          <i class="fa fa-plus"></i> Add to Book
-      </button>
-    </div>
-    <div ng-show='success' class=results>
-      <h1>Recipe has been added</h1>
-      <h3 class='actions'><span ng-click='redirect()'class='act'>Go to Book!</span>  |  <span ng-click='done()' class='act'>Done</span> </h3>
+  <body>
+    <div ng-view>
+
     </div>
     <script src="/js/popup.js"></script>
   </body>

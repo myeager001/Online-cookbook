@@ -6,12 +6,21 @@ var salt = bcrypt.genSaltSync(10);
 var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/onlineCookbook';
 
 /* GET home page. */
+router.put('/updatefavorite', function(req, res, next){
+  console.log(req.body);
+  res.send('updating');
+  // mongodb.MongoClient.connect(url, function(err, db) {
+  //   var users = db.collection('users');
+  //
+  // });
+})
 router.post('/:id', function(req, res, next) {
   console.log(req.body);
   if(!req.body.url || !req.body.name || req.body.tags.length>3){
     res.json({ success: false, message: 'Invalid url/recipe name or to many tags.' })
   }else{
     var recipe = {
+      favortie: false,
       name: req.body.name,
       url: req.body.url,
       tags: req.body.tags,

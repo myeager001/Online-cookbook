@@ -18,6 +18,8 @@ router.get('/', function(req, res, next) {
   });
 });
 router.post('/login', function(req, res, next){
+  console.log('loging in ..')
+  console.log(req.body)
   mongodb.MongoClient.connect(url, function(err, db) {
     if(err){
       db.close();
@@ -44,6 +46,7 @@ router.post('/login', function(req, res, next){
         });
 
         // return the information including token as JSON
+        console.log('sending your token');
         res.json({
           success: true,
           message: 'Enjoy your token!',
@@ -58,6 +61,7 @@ router.post('/login', function(req, res, next){
 })
 
 router.post('/signup', function(req, res, next) {
+    console.log(req.body)
   //make sure body contains all info
   if(req.body.password && req.body.email && req.body.username){
     mongodb.MongoClient.connect(url, function(err, db) {
@@ -90,14 +94,14 @@ router.post('/signup', function(req, res, next) {
                 recipies: [],
               }, function (err, data) {
                 db.close();
-                res.end({success: true, message:"Successfully signed up! Please login"});
+                res.json({success: true, message:"Successfully signed up! Please login"});
               })
             }
           })
         }
       })
     })
-  }else{res.end({success: true, message:"Could not add user one or more field's were invalid"});}
+  }else{res.json({success: true, message:"Could not add user one or more field's were invalid"});}
 });
 
 router.put('/', function(req, res, next) {
