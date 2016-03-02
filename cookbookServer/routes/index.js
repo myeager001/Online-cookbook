@@ -14,8 +14,8 @@ router.put('/updatefavorite', function(req, res, next){
   //
   // });
 })
-router.post('/:id', function(req, res, next) {
-  console.log(req.body);
+router.post('/', function(req, res, next) {
+  console.log(req.decoded._id);
   if(!req.body.url || !req.body.name || req.body.tags.length>3){
     res.json({ success: false, message: 'Invalid url/recipe name or to many tags.' })
   }else{
@@ -27,7 +27,7 @@ router.post('/:id', function(req, res, next) {
     }
     mongodb.MongoClient.connect(url, function(err, db) {
       var users = db.collection('users');
-      var id = mongodb.ObjectId(req.params.id)
+      var id = mongodb.ObjectId(req.decoded._id)
       users.update(
         { _id: id },
         { $push: { recipies: recipe} },

@@ -21,7 +21,7 @@ app.controller('MainController', ['$scope', '$http', '$window', '$location',func
       if(scope.recipe.tags.length<=3){
           chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
             results.url = tabs[0].url;
-            http.post('http://localhost:3000/home/56bccb5022509b854aab475c', results).then(function(results){
+            http.post('http://localhost:3000/home/', results).then(function(results){
               if(results.data.success){
                 scope.success = true;
               }
@@ -73,15 +73,22 @@ app.config(function($routeProvider, $httpProvider){
   $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
      return {
          'request': function (config) {
-             config.headers = config.headers || {};
-             if (chrome.storage.token) {
-                  chrome.storage.local.get('token', function(token){
-                    config.headers.token = token.token;
-                    return config;
-                  })
-             }else{
-               return config;
-             }
+            config.headers = config.headers || {};
+            return $q(function (resolve, reject){
+              chrome.storage.local.get('token', function(token){
+                console.log('config', config);
+                if(token){
+                  console.log(token)
+                  console.log('geting token!')
+                  config.headers.token = token.token;
+                  resolve(config);
+                }else{
+                  resolve(config);
+                }
+              })
+            })
+
+
          },
          'responseError': function (response) {
              if (response.status === 401 || response.status === 403) {
