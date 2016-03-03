@@ -55,4 +55,8 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
     scope.filters = {};
     scope.filterFavsOn = false;
   }
+  scope.logOut = function(){
+    localStorage.$reset();
+    location.path('/')
+  }
 }])

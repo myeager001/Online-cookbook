@@ -5,14 +5,20 @@
         <img alt="Brand" src="/icon.png">
         <h3>The Online CookBook</h3>
       </div>
-      <div class="btn-group menu" id="links">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#" class="nav-btn">Edit Profile</a></li>
-          <li><a href="#" class="nav-btn">Log Out</a></li>
-        </ul>
+      <div class="box">
+        <div class="container-1">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <input type="search" id="search" ng-model='searchValue' placeholder="Search..." />
+        </div>
+      </div>
+      <div class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">
+          <img src="https://c625951.ssl.cf3.rackcdn.com/userreview/photo-b0f7c5047ecc2e8c86d445f33a1975e8.png" class="profile-image img-circle"> {{user.username}} <b class="caret"></b></a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a><i class="fa fa-cog"></i> Account</a></li>
+              <li class="divider"></li>
+              <li><a ng-click='logOut()'><i class="fa fa-sign-out" ></i> Sign-out</a></li>
+            </ul>
       </div>
     </div>
   </div>
@@ -25,7 +31,7 @@
     </ul>
   </div>
   <div class='recipeView'>
-    <div ng-repeat='recipe in user.recipies | filter:filters' class='recipe' ng-click='go(recipe.url)'>
+    <div ng-repeat='recipe in user.recipies | filter:filters | filter: searchValue' class='recipe' ng-click='go(recipe.url)'>
         <h1 class='recipeName'>{{recipe.name}}</h1>
         <div class='tagRow'>
           <span ng-repeat='tag in recipe.tags'>{{tag.text}} </span>
