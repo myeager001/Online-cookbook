@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
     res.json({ success: false, message: 'Invalid url/recipe name or to many tags.' })
   }else{
     var recipe = {
-      favortie: false,
+      favorite: true,
       name: req.body.name,
       url: req.body.url,
       tags: req.body.tags,

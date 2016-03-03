@@ -1,7 +1,9 @@
 app.controller('MainController', ['$scope', '$http', '$location', '$localStorage', function(scope, http, location, localStorage){
-  http.get('http://localhost:3000/home/56b1212dd86df5b18069cafe').then(function(results){
-    console.log(results.data[0]);
-    scope.user = results.data[0];
+  http.get('http://localhost:3000/home/').then(function(results){
+    if(results.data._id){
+      location.path('/home');
+    }
+
   })
   scope.login = false
   scope.signUp = false
@@ -34,8 +36,8 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
     window.location.assign(url)
   }
   scope.toggleFav = function(recipe){
-    this.recipe.favorite = !this.recipe.favorite
-    http.put('http://localhost:3000/home/', recipe).then(function(results){
+    recipe.favorite = !recipe.favorite
+    http.put('http://localhost:3000/home/updatefavorite', recipe).then(function(results){
       console.log(results.data)
     })
   }
@@ -43,4 +45,14 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
   scope.toggleModal = function() {
     scope.modalShown = !scope.modalShown;
   };
+  scope.filterFavsOn = false;
+  scope.filters = {}
+  scope.filterFavs = function(){
+    scope.filterFavsOn = true;
+    scope.filters.favorite = true;
+  }
+  scope.removeFilters = function(){
+    scope.filters = {};
+    scope.filterFavsOn = false;
+  }
 }])
