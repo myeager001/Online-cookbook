@@ -50,7 +50,7 @@ app.controller('SigninController', ['$scope', '$http', '$location',function(scop
     http.post('http://localhost:3000/auth/login', packet).then(function(results){
       console.log(results);
       if(results.data.success){
-        results.data.token
+        results.data.token;
         chrome.storage.local.set({'token': results.data.token});
         location.path('/home')
       }else{

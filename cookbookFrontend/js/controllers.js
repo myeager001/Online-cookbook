@@ -42,7 +42,8 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
     })
   }
   scope.modalShown = false;
-  scope.toggleModal = function() {
+  scope.toggleModal = function(recipe) {
+    scope.selectedRecipe = recipe;
     scope.modalShown = !scope.modalShown;
   };
   scope.filterFavsOn = false;
@@ -57,6 +58,13 @@ app.controller('ContentController', ['$scope', '$http', '$location', '$localStor
   }
   scope.logOut = function(){
     localStorage.$reset();
-    location.path('/')
+    location.path('/');
+  }
+  scope.removeRecipe = function(){
+    scope.modalShown = !scope.modalShown;
+    console.log(scope.selectedRecipe);
+    http.delete('http://localhost:3000/home/'+scope.selectedRecipe.name).then(function(results){
+      console.log('done');
+    })
   }
 }])

@@ -30,20 +30,33 @@
       <li role="presentation" ng-class='filterFavsOn ? "active" : "off"'><a href='#' ng-click='filterFavs(); $event.stopPropagation();'>My Favorites</a></li>
     </ul>
   </div>
-  <div class='recipeView'>
-    <div ng-repeat='recipe in user.recipies | filter:filters | filter: searchValue' class='recipe' ng-click='go(recipe.url)'>
-        <h1 class='recipeName'>{{recipe.name}}</h1>
-        <div class='tagRow'>
-          <span ng-repeat='tag in recipe.tags'>{{tag.text}} </span>
-        </div>
-        <h4 class='iconRow'><i class="fa fa-trash actionIcon" ng-click='toggleModal(); $event.stopPropagation();'></i><i class="fa fa-tag actionIcon"></i><i class="fa fa-star actionIcon" ng-click='toggleFav(recipe); $event.stopPropagation();' ng-class="recipe.favorite ? 'favorite' : 'favortieOFF'"></i></h4>
-    </div>
-    <modal-dialog show='modalShown' width='300px' height='150px'>
-      <h3 class='ng-modal-type'>Remove from the Book?</h3>
-      <div>
-        <button type="button" class="btn btn-success">Remove</button>
-        <button type="button" class="btn btn-warning" ng-click='toggleModal()'>Cancel</button>
+  <div class='rightSide'>
+    <h1>My Recipes</h1>
+    <div class='recipeView'>
+      <div ng-repeat='recipe in user.recipies | filter:filters | filter: searchValue' class='recipe' ng-click='go(recipe.url)'>
+          <h1 class='recipeName'>{{recipe.name}}</h1>
+          <div class='tagRow'>
+            <span ng-repeat='tag in recipe.tags'>{{tag.text}} </span>
+          </div>
+          <h4 class='iconRow'>
+            <span class='iconHolder' ng-click='toggleModal(recipe);$event.stopPropagation();'>
+              <i class="fa fa-trash actionIcon"  ></i>
+            </span>
+            <span class='iconHolder' ng-click='toggleModal();$event.stopPropagation();'>
+              <i class="fa fa-tag actionIcon"></i>
+            </span>
+            <span class='iconHolder' ng-click='toggleFav(recipe); $event.stopPropagation();'>
+              <i class="fa fa-star actionIcon"  ng-class="recipe.favorite ? 'favorite' : 'favortieOFF'"></i>
+            </span>
+          </h4>
       </div>
-    </modal-dialog>
+    </div>
   </div>
+  <modal-dialog show='modalShown' width='300px' height='150px'>
+    <h3 class='ng-modal-type'>Remove from the Book?</h3>
+    <div>
+      <button type="button" class="btn btn-success" ng-click='removeRecipe();'>Remove</button>
+      <button type="button" class="btn btn-warning" ng-click='toggleModal()'>Cancel</button>
+    </div>
+  </modal-dialog>
 </main>

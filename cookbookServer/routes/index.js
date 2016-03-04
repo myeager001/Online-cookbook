@@ -8,12 +8,32 @@ var url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/onlineCookbook'
 /* GET home page. */
 router.put('/updatefavorite', function(req, res, next){
   console.log(req.body);
-  res.send('updating');
-  // mongodb.MongoClient.connect(url, function(err, db) {
-  //   var users = db.collection('users');
-  //
-  // });
+  mongodb.MongoClient.connect(url, function(err, db) {
+    var users = db.collection('users');
+    var id = mongodb.ObjectId(req.decoded._id)
+    users.update(
+       { _id: id, "recipies.name": req.body.name },
+       { $set: { "recipies.$" : req.body } }
+    )
+  })
+  res.json({success: true, message: 'updated that shit!'})
 })
+
+router.delete('/:name', function(req, res, next){
+  console.log(req.params.name);
+  mongodb.MongoClient.connect(url, function(err, db) {
+    var users = db.collection('users');
+    var id = mongodb.ObjectId(req.decoded._id)
+    users.update(
+        {'_id': id},
+        { $pull: { "recipies" : { name: req.params.name } } },
+    false,
+    true
+    );
+    })
+    res.json({success: true, message: 'deleted that shit!'})
+})
+
 router.post('/', function(req, res, next) {
   console.log(req.decoded._id);
   if(!req.body.url || !req.body.name || req.body.tags.length>3){

@@ -33,8 +33,8 @@
           ng-model='signupPacket.username' ng-pattern='/^[a-zA-Z0-9]*$/'>
         </div>
         <span class="error" ng-show="signUpForm.username.$error.required">Required!</span>
-        <span class="error" ng-show="signUpForm.username.$error.minlength">Username is to short!</span>
-        <span class="error" ng-show="signUpForm.username.$error.maxlength">Username is to long!</span>
+        <span class="error" ng-show="signUpForm.username.$error.minlength">Username is too short!</span>
+        <span class="error" ng-show="signUpForm.username.$error.maxlength">Username is too long!</span>
           <span class="error" ng-show="signUpForm.username.$error.pattern">Only alphanumeric characters!</span>
       </div>
       <div class='formGroup'>
@@ -44,7 +44,7 @@
           ng-minlength=8>
         </div>
         <span class="error" ng-show="signUpForm.password.$error.required">Required!</span>
-        <span class="error" ng-show="signUpForm.password.$error.minlength">Password is to short!</span>
+        <span class="error" ng-show="signUpForm.password.$error.minlength">Password is too short!</span>
       </div>
       <div class='formGroup'>
         <div class="input-group">
@@ -63,7 +63,7 @@
       <div class='formGroup'>
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Username</span>
-          <input type="text" class="form-control" ng-required='true' 
+          <input type="text" class="form-control" ng-required='true'
           ng-model='loginPacket.username'>
         </div>
       </div>
@@ -79,7 +79,7 @@
   </div>
   <div class='infoBar'>
     <div class='infoItem'>
-      <h2><i class="fa fa-sitemap"></i>Stay orangized</h2>
+      <h2><i class="fa fa-sitemap"></i>Stay Organized</h2>
       <p>blah blah blah</p>
     </div>
     <div class='infoItem'>
